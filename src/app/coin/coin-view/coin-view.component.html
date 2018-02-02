@@ -1,0 +1,60 @@
+<mat-card class="animated fadeInUp coin-view" *ngIf="coin">
+  <mat-card-title *ngIf="org">
+    <img [src]="org.ghAvatar"/>
+    <label>{{coin?.id}}</label>
+  </mat-card-title>
+  <mat-card-title *ngIf="!org">
+    <label>{{coin?.id}}</label>
+  </mat-card-title>
+  <mat-card-content *ngIf="coin?.status && coin?.status?.orgSynced && org">
+    <p>Website: <a [href]="org.ghBlog" target="_blank">{{org.ghBlog}}</a></p>
+    <p>Created at: {{org.ghCreatedAt}}</p>
+    <p>Github page: <a [href]="org.ghHtml" target="_blank">{{org.ghHtml}}</a></p>
+  </mat-card-content>
+  <mat-card-content *ngIf="">
+    <p *ngIf="coin?.status?.isOrgSyncing">Please wait a minute while we sync the data</p>
+    <p *ngIf="!coin?.status?.isOrgSyncing ">Something went wrong. Please contact an admin</p>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="coin?.status">
+  <mat-tab-group dynamicHeight="true">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Repositories ({{repos?.length}})
+        </ng-template>
+        <mat-card class="animated fadeInUp coin-view" *ngIf="repos.length > 0">
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let repo of repos">
+                {{repo.name}}
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="animated fadeInUp coin-view" *ngIf="repos.length == 0">
+          <p *ngIf="coin?.status?.isReposSyncing">Please wait some minutes for the repositories to sync.</p>
+          <p *ngIf="!coin?.status?.isReposSyncing && coin?.status?.repoSynced">This organisation seems to not have a repo.</p>
+          <p *ngIf="!coin?.status?.isReposSyncing && !coin?.status?.repoSynced">Oops, something went wrong! We were unable to sync the repos of this organisation.</p>
+        </mat-card>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Members ({{members?.length}})
+        </ng-template>
+        <mat-card class="animated fadeInUp coin-view" *ngIf="members.length > 0">
+          <mat-card-content>
+            <ul>
+              <li *ngFor="let member of members">
+                {{member.login}}
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="animated fadeInUp coin-view" *ngIf="members.length == 0">
+          <p *ngIf="coin?.status?.isMembersSyncing">Please wait some minutes for the members to sync.</p>
+          <p *ngIf="!coin?.status?.isMembersSyncing && coin?.status?.membersSynced">This organisation seems to have no member.</p>
+          <p *ngIf="!coin?.status?.isMembersSyncing && !coin?.status?.membersSynced">Oops, something went wrong! We were unable to sync the members of this organisation.</p>
+        </mat-card>
+      </mat-tab>
+  </mat-tab-group>
+</mat-card>

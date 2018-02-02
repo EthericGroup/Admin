@@ -1,0 +1,24 @@
+<mat-card class="animated fadeInUp">
+  <mat-card-title>Create a new coin</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="coinForm" (ngSubmit)="createCoin()">
+      <mat-form-field>
+        <input matInput placeholder="Project name ex: Bitcoin" type="text" name="id" formControlName="id"/>
+        <mat-error *ngIf="coinForm.get('id').hasError('required')">Please specify the project name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Coin symbol ex: BTC" type="text" name="symbol" formControlName="symbol"/>
+        <mat-error *ngIf="coinForm.get('symbol').hasError('required')">Please specify the coin symbol</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Github organisation name" type="text" name="githubName" formControlName="githubName"/>
+        <mat-error *ngIf="coinForm.get('githubName').hasError('required')">Please specify the github name</mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" [disabled]="!coinForm.valid || submitting" type="submit">
+          <mat-icon class="rotate" *ngIf="submitting">sync</mat-icon> Create coin
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

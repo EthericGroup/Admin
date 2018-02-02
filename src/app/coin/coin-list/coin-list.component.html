@@ -1,0 +1,16 @@
+<mat-card class="animated fadeInUp">
+  <mat-card-title>
+    <label>Coins list</label>
+    <button mat-raised-button color="primary" (click)="createCoin()" class="primary-btn">Track coin</button>
+  </mat-card-title>
+  <mat-card-content *ngIf="coins.length == 0">
+    <p>Oops! Its seems that we are not tracking any coin yet. <br/> Start by clicking the track coin to add coins to track.</p>
+  </mat-card-content>
+  <mat-card-content *ngIf="coins.length > 0">
+    <ul>
+      <li *ngFor="let coin of coins">
+        <a (click)="viewCoin(coin.id)">{{coin.id}}</a>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

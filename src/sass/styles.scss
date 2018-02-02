@@ -1,0 +1,121 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import './variables';
+@import './theme';
+
+html, body, material-app, mat-sidenav-container{
+  margin: 0;
+  max-width: 100%;
+  height: 100%;
+  font-family: 'Chivo', sans-serif;
+}
+
+// Header styles
+header{
+  width: 100%;
+  height: 50px;
+  background: $blue;
+  border-bottom: solid 5px rgba(255,255,255,0.1);
+  padding: 0em;
+  z-index: 100;
+  h1{
+    margin: 0px;
+    line-height: 50px;
+    display: inline-block;
+    padding-left: .5em;
+    img{
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .menu-btn{
+    padding-right: .5em;
+    cursor: pointer;
+    color: #FFF;
+    line-height: 50px;
+    float: right;
+    font-size: 30px;
+
+    &:hover{
+      color: $black;
+    }
+  }
+}
+
+// Footer styles
+footer{
+    height: 50px;
+    background: $blue;
+    border-top: solid 5px rgba(255,255,255,0.1);
+    p{
+        margin: 0px;
+        line-height: 50px;
+    }
+}
+
+// Navigation styles
+
+.second-logo{
+  width: 100px;
+  height: auto;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+nav.main-menu{
+  padding-top: 50px;
+  text-align: center;
+
+  ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    li{
+      display: block;
+      text-align: center;
+
+      a{
+        font-size: 1.5em;
+        line-height: 2em;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #FFF;
+
+        &:hover{
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+// Main styles
+main{
+  min-height: calc(100vh - 50px);
+}
+
+mat-form-field{
+    width: 100%;
+    margin: .75em 0em;
+}
+
+.coin-view{
+    mat-card-title{
+        img{
+            width: auto;
+            height: 40px;
+            float: left;
+        }
+        label{
+            line-height: 40px;
+            padding-left: 10px;
+        }
+    }
+    
+}
+
+.primary-btn{
+    float: right;
+}
